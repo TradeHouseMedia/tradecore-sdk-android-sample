@@ -14,14 +14,36 @@ dependencyResolutionManagement {
 }
 ```
 
-2. Add the dependencies.
+2. Add the main core dependency.
 
 ```groovy
 def tradecoreVersion = "1.3.8"
 implementation("com.tradehousemedia:tradecore-core:$tradecoreVersion")
+```
+
+Additionally, add a respective dependency for each monetization platform you use the app:
+
+- Google Ad Manager:
+
+```groovy
 implementation("com.tradehousemedia:tradecore-google-ad-manager:$tradecoreVersion")
+```
+
+- Prebid mobile SDK:
+
+```groovy
 implementation("com.tradehousemedia:tradecore-prebid:$tradecoreVersion")
+```
+
+- Amazon Publishing Service SDK:
+
+```groovy
 implementation("com.tradehousemedia:tradecore-amazon:$tradecoreVersion")
+```
+
+- Google Interactive Media Ads:
+
+```groovy
 implementation("com.tradehousemedia:tradecore-ima:$tradecoreVersion")
 ```
 

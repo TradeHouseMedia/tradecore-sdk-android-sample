@@ -7,6 +7,12 @@ Request parameters come in two types: stack-level and zone-specific.
 Stack parameters are global settings that apply universally across the SDK, affecting all zones (placements) within the
 stack.
 
+```kotlin
+TradecoreSDK.requestParameters = listOf(
+    TradecoreGamStackParameters(listOf("testDeviceId"))
+)
+```
+
 ### GAM
 
 The `TradecoreGamStackParameters` class is designed to manage Google Ad Manager (GAM) configuration for the
@@ -19,6 +25,26 @@ entire stack. Below is an overview of its properties:
 ## Zone Parameters
 
 Zone parameters are settings unique to each placement or zone, enabling tailored configurations for each ad request.
+
+```kotlin
+adView.setZoneParameters(
+    listOf(
+        TradecoreGamZoneParameters(
+            customTargeting = listOf(
+                TradecoreGamZoneParameters.CustomTargeting.of("key_1", "value_1"),
+                TradecoreGamZoneParameters.CustomTargeting.of("key_2", listOf("array_1", "array_2")),
+            ),
+            categoryExclusions = listOf("exclusion_1", "exclusion_2"),
+            keywords = listOf("keyword_1", "keyword_2"),
+            contentUrl = "test_content_url",
+            publisherProvidedId = "test_publisher_provided_id",
+            adMobExtras = Bundle().apply {
+                putString("correlator", "test_correlator")
+            }
+        )
+    )
+)
+```
 
 ### GAM
 
