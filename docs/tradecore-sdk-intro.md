@@ -9,4 +9,4 @@ Follow the [instructions](./tradecore-sdk-integration.md) to add the SDK to your
 Tradecore SDK supports the following ad formats:
 
 - [Ad View](./tradecore-sdk-ad-view.md) (HTML)
-- [Instream Video](./tradecore-sdk-instream) (Video)
+- [Instream Video](./tradecore-sdk-instream.md) (Video)
