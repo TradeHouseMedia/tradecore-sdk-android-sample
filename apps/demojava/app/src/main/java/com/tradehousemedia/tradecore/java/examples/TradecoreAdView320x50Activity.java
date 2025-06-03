@@ -47,32 +47,33 @@ public class TradecoreAdView320x50Activity extends BaseExampleActivity {
         return new TradecoreAdViewListener() {
             @Override
             public void onAdLoaded(@NotNull TradecoreAd tradecoreAd) {
-
+                // Ad is loaded
             }
 
             @Override
             public void onAdFailed(@NotNull TradecoreError tradecoreError) {
+                // Ad failed to load
                 Log.d(TAG, "Ad failed to load: " + tradecoreError.getMessage());
             }
 
             @Override
             public void onAdImpression(@NotNull TradecoreAd tradecoreAd) {
-
+                // Informs that an impression has occurred.
             }
 
             @Override
             public void onAdClicked(@NotNull TradecoreAd tradecoreAd) {
-
+                // Ad clicked
             }
 
             @Override
             public void onAdClosed(@NotNull TradecoreAd tradecoreAd) {
-
+                // Ad closed
             }
 
             @Override
             public void onAdOpened(@NotNull TradecoreAd tradecoreAd) {
-
+                // Ad opened to full screen
             }
         };
     }

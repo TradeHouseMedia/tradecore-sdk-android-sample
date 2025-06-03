@@ -169,12 +169,6 @@ class TradecoreInstreamKeywordsActivity : AppCompatActivity() {
             override fun onAdFailed(tradecoreError: TradecoreError) {
                 resumeContent()
             }
-
-            override fun shouldResumeContent() {
-            }
-
-            override fun shouldPauseContent() {
-            }
         }
     }
 

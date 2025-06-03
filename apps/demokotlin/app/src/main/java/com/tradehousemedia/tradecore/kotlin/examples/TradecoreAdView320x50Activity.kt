@@ -3,6 +3,7 @@ package com.tradehousemedia.tradecore.kotlin.examples
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import com.tradehousemedia.tradecore.core.TradecoreAd
 import com.tradehousemedia.tradecore.core.TradecoreAdView
 import com.tradehousemedia.tradecore.core.TradecoreError
 import com.tradehousemedia.tradecore.core.listeners.TradecoreAdViewListener
@@ -43,8 +44,29 @@ class TradecoreAdView320x50Activity : BaseExampleActivity() {
 
     private fun createListener(): TradecoreAdViewListener {
         return object : TradecoreAdViewListener {
+            override fun onAdLoaded(ad: TradecoreAd) {
+                // Ad is loaded
+            }
+
             override fun onAdFailed(tradecoreError: TradecoreError) {
+                // Ad failed to load
                 Log.d(TAG, "Ad failed to load: " + tradecoreError.message)
+            }
+
+            override fun onAdImpression(ad: TradecoreAd) {
+                // Informs that an impression has occurred.
+            }
+
+            override fun onAdClicked(ad: TradecoreAd) {
+                // Ad clicked
+            }
+
+            override fun onAdOpened(ad: TradecoreAd) {
+                // Ad opened to full screen
+            }
+
+            override fun onAdClosed(ad: TradecoreAd) {
+                // Ad closed
             }
         }
     }

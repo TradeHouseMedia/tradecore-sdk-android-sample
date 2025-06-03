@@ -55,17 +55,24 @@ class TradecoreInstreamMedia3Activity : BaseExampleActivity() {
     private fun createAdListener(): TradecoreInstreamAdListener {
         return object : TradecoreInstreamAdListener {
             override fun onAdLoaded(ad: TradecoreAd) {
+                // Ad loaded
                 Log.d("ExampleActivity", "Ad loaded for zone " + ad.zoneId + " with targeting: " + ad.targeting)
                 tradecoreInstreamAdUnit?.show()
             }
 
+            override fun onAdFailed(error: TradecoreError) {
+                // Ad failed to load
+            }
+
             override fun shouldPauseContent() {
+                // Ad is going to start, the content player should be paused
                 savedPosition = videoPlayer.currentPosition
                 videoPlayer.stopPlayback()
                 videoPlayer.setMediaController(null)
             }
 
             override fun shouldResumeContent() {
+                // Ad is completed, the content player should be resumed
                 videoPlayer.setVideoPath(SAMPLE_VIDEO_URL)
                 videoPlayer.setMediaController(mediaController)
                 videoPlayer.setOnPreparedListener { player: MediaPlayer ->
@@ -76,7 +83,16 @@ class TradecoreInstreamMedia3Activity : BaseExampleActivity() {
                 }
             }
 
-            override fun onAdFailed(error: TradecoreError) {
+            override fun onAdFinished(ad: TradecoreAd) {
+                // Ad finished playing
+            }
+
+            override fun onAdStarted(ad: TradecoreAd) {
+                // Ad started playing
+            }
+
+            override fun onAdClicked(ad: TradecoreAd) {
+                // Ad clicked
             }
         }
     }

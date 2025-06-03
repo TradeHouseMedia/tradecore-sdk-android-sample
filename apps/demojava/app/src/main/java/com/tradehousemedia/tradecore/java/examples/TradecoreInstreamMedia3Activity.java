@@ -59,6 +59,7 @@ public class TradecoreInstreamMedia3Activity extends BaseExampleActivity {
         return new TradecoreInstreamAdListener() {
             @Override
             public void onAdLoaded(@NonNull TradecoreAd ad) {
+                // Ad loaded
                 Log.d("ExampleActivity", "Ad loaded for zone " + ad.getZoneId() + " with targeting: " + ad.getTargeting());
                 if (tradecoreInstreamAdUnit != null) {
                     tradecoreInstreamAdUnit.show();
@@ -67,10 +68,12 @@ public class TradecoreInstreamMedia3Activity extends BaseExampleActivity {
 
             @Override
             public void onAdFailed(@NonNull TradecoreError error) {
+                // Ad failed to load
             }
 
             @Override
             public void shouldPauseContent() {
+                // Ad is going to start, the content player should be paused
                 savedPosition = videoPlayer.getCurrentPosition();
                 videoPlayer.stopPlayback();
                 videoPlayer.setMediaController(null);
@@ -78,6 +81,7 @@ public class TradecoreInstreamMedia3Activity extends BaseExampleActivity {
 
             @Override
             public void shouldResumeContent() {
+                // Ad is completed, the content player should be resumed
                 videoPlayer.setVideoPath(SAMPLE_VIDEO_URL);
                 videoPlayer.setMediaController(mediaController);
                 videoPlayer.setOnPreparedListener(mp -> {
@@ -91,17 +95,17 @@ public class TradecoreInstreamMedia3Activity extends BaseExampleActivity {
 
             @Override
             public void onAdFinished(@NotNull TradecoreAd tradecoreAd) {
-
+                // Ad finished playing
             }
 
             @Override
             public void onAdStarted(@NotNull TradecoreAd tradecoreAd) {
-
+                // Ad started playing
             }
 
             @Override
             public void onAdClicked(@NotNull TradecoreAd tradecoreAd) {
-
+                // Ad clicked
             }
         };
     }
