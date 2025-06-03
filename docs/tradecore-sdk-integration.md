@@ -29,6 +29,14 @@ implementation("com.tradehousemedia:tradecore-ima:$tradecoreVersion")
 
 ## SDK initialization
 
+Insert Google Ad Manager application id generated for your application to AndroidManifest.xml (see [documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/android/quick-start) and [where to find](https://support.google.com/admanager/answer/15014197#app-id)).
+
+```xml
+<meta-data
+    android:name="com.google.android.gms.ads.APPLICATION_ID"
+    android:value="ca-app-pub-***" />
+```
+
 Initialize Tradecore SDK during the application creation (in the `Application.onCreate()` method).
 
 **Kotlin:**

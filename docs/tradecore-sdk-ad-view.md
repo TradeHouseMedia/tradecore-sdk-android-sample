@@ -6,7 +6,7 @@ method.
 **Kotlin:**
 
 ```kotlin
-    private var adView: TradecoreAdView? = null
+private var adView: TradecoreAdView? = null
 
 private fun loadAd() {
     val adView = TradecoreAdView(this).apply { adView = this }
