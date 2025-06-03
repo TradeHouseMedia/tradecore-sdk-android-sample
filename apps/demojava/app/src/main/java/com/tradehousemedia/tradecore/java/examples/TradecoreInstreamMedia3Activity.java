@@ -1,0 +1,108 @@
+package com.tradehousemedia.tradecore.java.examples;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.MediaController;
+import android.widget.VideoView;
+import androidx.annotation.NonNull;
+import com.tradehousemedia.tradecore.core.TradecoreAd;
+import com.tradehousemedia.tradecore.core.TradecoreError;
+import com.tradehousemedia.tradecore.core.listeners.TradecoreInstreamAdListener;
+import com.tradehousemedia.tradecore.ima.TradecoreInstreamAdUnit;
+import com.tradehousemedia.tradecore.java.R;
+import com.tradehousemedia.tradecore.java.utils.BaseExampleActivity;
+import org.jetbrains.annotations.NotNull;
+
+public class TradecoreInstreamMedia3Activity extends BaseExampleActivity {
+
+    private static final String SAMPLE_VIDEO_URL = "https://storage.googleapis.com/gvabox/media/samples/stock.mp4";
+    private int savedPosition = 0;
+
+    private VideoView videoPlayer;
+    private MediaController mediaController;
+    private TradecoreInstreamAdUnit tradecoreInstreamAdUnit;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_instream);
+
+        videoPlayer = findViewById(R.id.videoView);
+        mediaController = new MediaController(this);
+        mediaController.setAnchorView(videoPlayer);
+        videoPlayer.setMediaController(mediaController);
+
+        findViewById(R.id.playButton).setOnClickListener(this::loadAd);
+    }
+
+    private void loadAd(View playButton) {
+        ViewGroup container = findViewById(R.id.videoPlayerContainer);
+
+        tradecoreInstreamAdUnit = new TradecoreInstreamAdUnit("tradecore-zone-3027", this);
+        tradecoreInstreamAdUnit.setVideoPlayer(videoPlayer, container);
+        tradecoreInstreamAdUnit.setAdListener(createAdListener());
+        tradecoreInstreamAdUnit.loadAd();
+
+        playButton.setVisibility(View.GONE);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (tradecoreInstreamAdUnit != null)
+            tradecoreInstreamAdUnit.destroy();
+    }
+
+    private TradecoreInstreamAdListener createAdListener() {
+        return new TradecoreInstreamAdListener() {
+            @Override
+            public void onAdLoaded(@NonNull TradecoreAd ad) {
+                Log.d("ExampleActivity", "Ad loaded for zone " + ad.getZoneId() + " with targeting: " + ad.getTargeting());
+                if (tradecoreInstreamAdUnit != null) {
+                    tradecoreInstreamAdUnit.show();
+                }
+            }
+
+            @Override
+            public void onAdFailed(@NonNull TradecoreError error) {
+            }
+
+            @Override
+            public void shouldPauseContent() {
+                savedPosition = videoPlayer.getCurrentPosition();
+                videoPlayer.stopPlayback();
+                videoPlayer.setMediaController(null);
+            }
+
+            @Override
+            public void shouldResumeContent() {
+                videoPlayer.setVideoPath(SAMPLE_VIDEO_URL);
+                videoPlayer.setMediaController(mediaController);
+                videoPlayer.setOnPreparedListener(mp -> {
+                    if (savedPosition > 0) {
+                        mp.seekTo(savedPosition);
+                    }
+                    mp.start();
+                });
+            }
+
+
+            @Override
+            public void onAdFinished(@NotNull TradecoreAd tradecoreAd) {
+
+            }
+
+            @Override
+            public void onAdStarted(@NotNull TradecoreAd tradecoreAd) {
+
+            }
+
+            @Override
+            public void onAdClicked(@NotNull TradecoreAd tradecoreAd) {
+
+            }
+        };
+    }
+}
