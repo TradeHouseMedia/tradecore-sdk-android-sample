@@ -244,6 +244,29 @@ private TradecoreInstreamAdListener createAdListener() {
 Most of the interface methods provide a parameter containing metadata about the loaded ad. You can find detailed
 information about the ad metadata structure and its fields in the [Ad Metadata](./tradecore-sdk-ad-metadata.md) section.
 
+## Destroy method
+
+When you leave the screen or you no longer need the ad unit you should call `destroy()` method. It disables the auto refresh and clears all resources.
+
+**Kotlin:**
+
+```kotlin
+    override fun onDestroy() {
+        super.onDestroy()
+        tradecoreInstreamAdUnit?.destroy()
+    }
+```
+
+**Java:**
+
+```java
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        tradecoreInstreamAdUnit.destroy();
+    }
+```
+
 ## TradecoreInstreamAdUnit configuration
 
 Please refer to the table below for a detailed overview of the `TradecoreInstreamAdUnit` properties and methods
