@@ -51,8 +51,9 @@ public class TradecoreInstreamMedia3Activity extends BaseExampleActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (tradecoreInstreamAdUnit != null)
+        if (tradecoreInstreamAdUnit != null) {
             tradecoreInstreamAdUnit.destroy();
+        }
     }
 
     private TradecoreInstreamAdListener createAdListener() {

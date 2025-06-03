@@ -48,6 +48,7 @@ public class TradecoreInstreamKeywordsActivity extends AppCompatActivity {
     private VideoView videoPlayer;
     private MediaController mediaController;
     private GamAdapter videoAdPlayerAdapter;
+    private TradecoreInstreamAdUnit adUnit;
 
     private ImaSdkSettings imaSdkSettings;
 
@@ -83,6 +84,14 @@ public class TradecoreInstreamKeywordsActivity extends AppCompatActivity {
             requestAds();
             view.setVisibility(View.GONE);
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (adUnit != null) {
+            adUnit.destroy();
+        }
     }
 
     private AdErrorEvent.AdErrorListener createAdErrorListener() {
@@ -157,6 +166,8 @@ public class TradecoreInstreamKeywordsActivity extends AppCompatActivity {
         TradecoreInstreamAdUnit adUnit = new TradecoreInstreamAdUnit("tradecore-zone-3027", this);
         adUnit.setAdListener(createTradecoreListener());
         adUnit.loadAd();
+
+        this.adUnit = adUnit;
     }
 
     public TradecoreInstreamAdListener createTradecoreListener() {

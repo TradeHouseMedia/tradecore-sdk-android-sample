@@ -42,6 +42,8 @@ class TradecoreInstreamKeywordsActivity : AppCompatActivity() {
     private lateinit var videoAdPlayerAdapter: GamAdapter
     private lateinit var imaSdkSettings: ImaSdkSettings
 
+    private var adUnit: TradecoreInstreamAdUnit? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_instream)
@@ -73,6 +75,11 @@ class TradecoreInstreamKeywordsActivity : AppCompatActivity() {
             requestAds()
             view.visibility = View.GONE
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        adUnit?.destroy()
     }
 
     private fun createAdErrorListener(): AdErrorListener {
@@ -142,6 +149,8 @@ class TradecoreInstreamKeywordsActivity : AppCompatActivity() {
         val adUnit = TradecoreInstreamAdUnit("tradecore-zone-3027", this)
         adUnit.setAdListener(createTradecoreListener())
         adUnit.loadAd()
+
+        this.adUnit = adUnit
     }
 
     fun createTradecoreListener(): TradecoreInstreamAdListener {
