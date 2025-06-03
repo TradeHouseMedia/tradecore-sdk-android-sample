@@ -9,9 +9,16 @@ method.
 private var adView: TradecoreAdView? = null
 
 private fun loadAd() {
+    // 1. Create TradecoreAdView
     val adView = TradecoreAdView(this).apply { adView = this }
+    
+    // 2. Set the zone id
     adView.zoneId = ZONE_ID
+    
+    // 3. Load the ad
     adView.loadAd()
+    
+    // 4. Add the ad view to the screen
     adContainer.addView(adView)
 }
 ```
@@ -22,9 +29,16 @@ private fun loadAd() {
 private TradecoreAdView adView;
 
 private void loadAd() {
+    // 1. Create TradecoreAdView
     adView = new TradecoreAdView(this);
+
+    // 2. Set the zone id
     adView.setZoneId(ZONE_ID);
+
+    // 3. Load the ad
     adView.loadAd();
+
+    // 4. Add the ad view to the screen
     getAdContainer().addView(adView);
 }
 ```

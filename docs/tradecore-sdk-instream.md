@@ -15,9 +15,14 @@ respective zone ID, listeners, and call its `load()` method.
 **Kotlin:**
 
 ```kotlin
-    private fun requestAds() {
+private fun requestAds() {
+    // 1. Create TradecoreInstreamVideo
     val adUnit = TradecoreInstreamVideo(ZONE_ID, this)
+    
+    // 2. Set the ad listener
     adUnit.setAdListener(createTradecoreListener())
+    
+    // 3. Load the ad
     adUnit.loadAd()
 }
 ```
@@ -25,9 +30,14 @@ respective zone ID, listeners, and call its `load()` method.
 **Java:**
 
 ```java
-    private void requestAds() {
+private void requestAds() {
+    // 1. Create TradecoreInstreamVideo
     TradecoreInstreamVideo adUnit = new TradecoreInstreamVideo(ZONE_ID, this);
+    
+    // 2. Set the ad listener
     adUnit.setAdListener(createTradecoreListener());
+
+    // 3. Load the ad
     adUnit.loadAd();
 }
 ```
@@ -41,9 +51,10 @@ You can access the received targeting keywords by using [`TradecoreAd`](./tradec
 **Kotlin:**
 
 ```kotlin
-    fun createTradecoreListener(): TradecoreInstreamAdListener {
+fun createTradecoreListener(): TradecoreInstreamAdListener {
     return object : TradecoreInstreamAdListener {
         override fun onAdLoaded(tradecoreAd: TradecoreAd) {
+            // 4. Generate the ad URL
             val encodedKeywords = TradecoreImaUtils.encodeKeywords(tradecoreAd.targeting)
             val url = SAMPLE_VAST_TAG_URL + "&cust_params=" + encodedKeywords
             showAd(url)
@@ -63,6 +74,7 @@ You can access the received targeting keywords by using [`TradecoreAd`](./tradec
     return new TradecoreInstreamAdListener() {
         @Override
         public void onAdLoaded(@NotNull TradecoreAd tradecoreAd) {
+            // 4. Generate the ad URL
             String encodedKeywords = TradecoreImaUtils.encodeKeywords(tradecoreAd.getTargeting());
             String url = SAMPLE_VAST_TAG_URL + "&cust_params=" + encodedKeywords;
             showAd(url);
@@ -110,9 +122,16 @@ then invoke the `load()` method.
 private var instreamVideo: TradecoreInstreamVideo? = null
 
 private fun loadAd(playButton: View) {
+    // 1. Create TradecoreInstreamVideo
     instreamVideo = TradecoreInstreamVideo(ZONE_ID, context)
+    
+    // 2. Set the video player for injecting the ad
     instreamVideo?.setVideoPlayer(videoPlayer, container)
+
+    // 3. Set the ad listener
     instreamVideo?.setAdListener(createAdListener())
+    
+    // 4. Load the ad
     instreamVideo?.loadAd()
 }
 ```
@@ -123,9 +142,16 @@ private fun loadAd(playButton: View) {
     private TradecoreInstreamVideo instreamVideo;
 
 private void loadAd(View playButton) {
+    // 1. Create TradecoreInstreamVideo
     instreamVideo = new TradecoreInstreamVideo(ZONE_ID, this);
+
+    // 2. Set the video player for injecting the ad
     instreamVideo.setVideoPlayer(videoPlayer, container);
+
+    // 3. Set the ad listener
     instreamVideo.setAdListener(createAdListener());
+
+    // 4. Load the ad
     instreamVideo.loadAd();
 }
 ```
@@ -141,6 +167,8 @@ private fun createAdListener(): TradecoreInstreamAdListener {
         override fun onAdLoaded(ad: TradecoreAd) {
             // Ad loaded
             Log.d("ExampleActivity", "Ad loaded for zone " + ad.zoneId + " with targeting: " + ad.targeting)
+            
+            // 5. Show the ad
             instreamVideo?.show()
         }
 
@@ -191,7 +219,9 @@ private TradecoreInstreamAdListener createAdListener() {
         public void onAdLoaded(@NonNull TradecoreAd ad) {
             // Ad loaded
             Log.d("ExampleActivity", "Ad loaded for zone " + ad.getZoneId() + " with targeting: " + ad.getTargeting());
+            
             if (instreamVideo != null) {
+                // 5. Show the ad
                 instreamVideo.show();
             }
         }
