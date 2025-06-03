@@ -1,7 +1,7 @@
 # Tradecore Android SDK - Ad Metadata
 
 The `TradecoreAd` class encapsulates essential metadata and targeting information related to an ad instance. It is
-commonly used across the SDK for `TradecoreAdView` and `TradecoreInstreamAdUnit`, and appears as a parameter in most
+commonly used across the SDK for `TradecoreAdView` and `TradecoreInstreamVideo`, and appears as a parameter in most
 interface callbacks.
 
 This class can be especially useful for:

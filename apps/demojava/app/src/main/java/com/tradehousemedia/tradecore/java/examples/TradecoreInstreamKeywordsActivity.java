@@ -17,7 +17,7 @@ import com.tradehousemedia.tradecore.core.TradecoreAd;
 import com.tradehousemedia.tradecore.core.TradecoreError;
 import com.tradehousemedia.tradecore.core.listeners.TradecoreInstreamAdListener;
 import com.tradehousemedia.tradecore.core.utils.TradecoreImaUtils;
-import com.tradehousemedia.tradecore.ima.TradecoreInstreamAdUnit;
+import com.tradehousemedia.tradecore.ima.TradecoreInstreamVideo;
 import com.tradehousemedia.tradecore.java.R;
 import org.jetbrains.annotations.NotNull;
 
@@ -48,7 +48,7 @@ public class TradecoreInstreamKeywordsActivity extends AppCompatActivity {
     private VideoView videoPlayer;
     private MediaController mediaController;
     private GamAdapter videoAdPlayerAdapter;
-    private TradecoreInstreamAdUnit adUnit;
+    private TradecoreInstreamVideo adUnit;
 
     private ImaSdkSettings imaSdkSettings;
 
@@ -163,11 +163,11 @@ public class TradecoreInstreamKeywordsActivity extends AppCompatActivity {
     }
 
     private void requestAds() {
-        TradecoreInstreamAdUnit adUnit = new TradecoreInstreamAdUnit("tradecore-zone-3027", this);
-        adUnit.setAdListener(createTradecoreListener());
-        adUnit.loadAd();
+        TradecoreInstreamVideo instreamVideo = new TradecoreInstreamVideo("tradecore-zone-3027", this);
+        instreamVideo.setAdListener(createTradecoreListener());
+        instreamVideo.loadAd();
 
-        this.adUnit = adUnit;
+        this.adUnit = instreamVideo;
     }
 
     public TradecoreInstreamAdListener createTradecoreListener() {

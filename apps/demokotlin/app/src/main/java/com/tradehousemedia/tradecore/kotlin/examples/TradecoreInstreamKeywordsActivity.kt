@@ -22,7 +22,7 @@ import com.tradehousemedia.tradecore.core.TradecoreAd
 import com.tradehousemedia.tradecore.core.TradecoreError
 import com.tradehousemedia.tradecore.core.listeners.TradecoreInstreamAdListener
 import com.tradehousemedia.tradecore.core.utils.TradecoreImaUtils
-import com.tradehousemedia.tradecore.ima.TradecoreInstreamAdUnit
+import com.tradehousemedia.tradecore.ima.TradecoreInstreamVideo
 import com.tradehousemedia.tradecore.kotlin.R
 import java.util.*
 
@@ -42,7 +42,7 @@ class TradecoreInstreamKeywordsActivity : AppCompatActivity() {
     private lateinit var videoAdPlayerAdapter: GamAdapter
     private lateinit var imaSdkSettings: ImaSdkSettings
 
-    private var adUnit: TradecoreInstreamAdUnit? = null
+    private var instreamVideo: TradecoreInstreamVideo? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,14 +79,14 @@ class TradecoreInstreamKeywordsActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        adUnit?.destroy()
+        instreamVideo?.destroy()
     }
 
     private fun createAdErrorListener(): AdErrorListener {
         return AdErrorListener { adErrorEvent: AdErrorEvent? ->
             Log.i(
                 LOGTAG,
-                "Ad Error: " + (if (adErrorEvent != null && adErrorEvent.getError() != null) adErrorEvent.getError().message else "Unknown error")
+                "Ad Error: " + (adErrorEvent?.error?.message ?: "Unknown error")
             )
             resumeContent()
         }
@@ -146,11 +146,11 @@ class TradecoreInstreamKeywordsActivity : AppCompatActivity() {
     }
 
     private fun requestAds() {
-        val adUnit = TradecoreInstreamAdUnit("tradecore-zone-3027", this)
+        val adUnit = TradecoreInstreamVideo("tradecore-zone-3027", this)
         adUnit.setAdListener(createTradecoreListener())
         adUnit.loadAd()
 
-        this.adUnit = adUnit
+        this.instreamVideo = adUnit
     }
 
     fun createTradecoreListener(): TradecoreInstreamAdListener {

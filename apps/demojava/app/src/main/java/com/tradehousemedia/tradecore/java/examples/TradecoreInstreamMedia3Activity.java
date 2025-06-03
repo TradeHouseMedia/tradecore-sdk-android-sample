@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import com.tradehousemedia.tradecore.core.TradecoreAd;
 import com.tradehousemedia.tradecore.core.TradecoreError;
 import com.tradehousemedia.tradecore.core.listeners.TradecoreInstreamAdListener;
-import com.tradehousemedia.tradecore.ima.TradecoreInstreamAdUnit;
+import com.tradehousemedia.tradecore.ima.TradecoreInstreamVideo;
 import com.tradehousemedia.tradecore.java.R;
 import com.tradehousemedia.tradecore.java.utils.BaseExampleActivity;
 import org.jetbrains.annotations.NotNull;
@@ -22,7 +22,7 @@ public class TradecoreInstreamMedia3Activity extends BaseExampleActivity {
 
     private VideoView videoPlayer;
     private MediaController mediaController;
-    private TradecoreInstreamAdUnit tradecoreInstreamAdUnit;
+    private TradecoreInstreamVideo instreamVideo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +40,10 @@ public class TradecoreInstreamMedia3Activity extends BaseExampleActivity {
     private void loadAd(View playButton) {
         ViewGroup container = findViewById(R.id.videoPlayerContainer);
 
-        tradecoreInstreamAdUnit = new TradecoreInstreamAdUnit("tradecore-zone-3027", this);
-        tradecoreInstreamAdUnit.setVideoPlayer(videoPlayer, container);
-        tradecoreInstreamAdUnit.setAdListener(createAdListener());
-        tradecoreInstreamAdUnit.loadAd();
+        instreamVideo = new TradecoreInstreamVideo("tradecore-zone-3027", this);
+        instreamVideo.setVideoPlayer(videoPlayer, container);
+        instreamVideo.setAdListener(createAdListener());
+        instreamVideo.loadAd();
 
         playButton.setVisibility(View.GONE);
     }
@@ -51,8 +51,8 @@ public class TradecoreInstreamMedia3Activity extends BaseExampleActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (tradecoreInstreamAdUnit != null) {
-            tradecoreInstreamAdUnit.destroy();
+        if (instreamVideo != null) {
+            instreamVideo.destroy();
         }
     }
 
@@ -62,8 +62,8 @@ public class TradecoreInstreamMedia3Activity extends BaseExampleActivity {
             public void onAdLoaded(@NonNull TradecoreAd ad) {
                 // Ad loaded
                 Log.d("ExampleActivity", "Ad loaded for zone " + ad.getZoneId() + " with targeting: " + ad.getTargeting());
-                if (tradecoreInstreamAdUnit != null) {
-                    tradecoreInstreamAdUnit.show();
+                if (instreamVideo != null) {
+                    instreamVideo.show();
                 }
             }
 

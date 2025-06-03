@@ -9,14 +9,14 @@ There are two primary scenarios available for integrating **Instream** within th
 
 In bidding-only mode, the Tradecore SDK handles the bidding process and returns the relevant targeting keywords.
 
-To integrate Instream in this mode, create an instance of the `TradecoreInstreamAdUnit` class, configure it with
+To integrate Instream in this mode, create an instance of the `TradecoreInstreamVideo` class, configure it with
 respective zone ID, listeners, and call its `load()` method.
 
 **Kotlin:**
 
 ```kotlin
     private fun requestAds() {
-    val adUnit = TradecoreInstreamAdUnit(ZONE_ID, this)
+    val adUnit = TradecoreInstreamVideo(ZONE_ID, this)
     adUnit.setAdListener(createTradecoreListener())
     adUnit.loadAd()
 }
@@ -26,7 +26,7 @@ respective zone ID, listeners, and call its `load()` method.
 
 ```java
     private void requestAds() {
-    TradecoreInstreamAdUnit adUnit = new TradecoreInstreamAdUnit(ZONE_ID, this);
+    TradecoreInstreamVideo adUnit = new TradecoreInstreamVideo(ZONE_ID, this);
     adUnit.setAdListener(createTradecoreListener());
     adUnit.loadAd();
 }
@@ -100,33 +100,33 @@ You can access the received targeting keywords by using [`TradecoreAd`](./tradec
 
 In rendering mode, Tradecore SDK manages Google Interactive Media Ads SDK internally.
 
-To integrate Instream in this mode, instantiate the `TradecoreInstreamAdUnit` class and configure it with the
+To integrate Instream in this mode, instantiate the `TradecoreInstreamVideo` class and configure it with the
 appropriate zone ID and interface. Additionally, set the corresponding player, container view, and view controller and
 then invoke the `load()` method.
 
 **Kotlin:**
 
 ```kotlin
-private var tradecoreInstreamAdUnit: TradecoreInstreamAdUnit? = null
+private var instreamVideo: TradecoreInstreamVideo? = null
 
 private fun loadAd(playButton: View) {
-    tradecoreInstreamAdUnit = TradecoreInstreamAdUnit(ZONE_ID, context)
-    tradecoreInstreamAdUnit?.setVideoPlayer(videoPlayer, container)
-    tradecoreInstreamAdUnit?.setAdListener(createAdListener())
-    tradecoreInstreamAdUnit?.loadAd()
+    instreamVideo = TradecoreInstreamVideo(ZONE_ID, context)
+    instreamVideo?.setVideoPlayer(videoPlayer, container)
+    instreamVideo?.setAdListener(createAdListener())
+    instreamVideo?.loadAd()
 }
 ```
 
 **Java:**
 
 ```java
-    private TradecoreInstreamAdUnit tradecoreInstreamAdUnit;
+    private TradecoreInstreamVideo instreamVideo;
 
 private void loadAd(View playButton) {
-    tradecoreInstreamAdUnit = new TradecoreInstreamAdUnit("tradecore-zone-3027", this);
-    tradecoreInstreamAdUnit.setVideoPlayer(videoPlayer, container);
-    tradecoreInstreamAdUnit.setAdListener(createAdListener());
-    tradecoreInstreamAdUnit.loadAd();
+    instreamVideo = new TradecoreInstreamVideo(ZONE_ID, this);
+    instreamVideo.setVideoPlayer(videoPlayer, container);
+    instreamVideo.setAdListener(createAdListener());
+    instreamVideo.loadAd();
 }
 ```
 
@@ -141,7 +141,7 @@ private fun createAdListener(): TradecoreInstreamAdListener {
         override fun onAdLoaded(ad: TradecoreAd) {
             // Ad loaded
             Log.d("ExampleActivity", "Ad loaded for zone " + ad.zoneId + " with targeting: " + ad.targeting)
-            tradecoreInstreamAdUnit?.show()
+            instreamVideo?.show()
         }
 
         override fun onAdFailed(error: TradecoreError) {
@@ -191,8 +191,8 @@ private TradecoreInstreamAdListener createAdListener() {
         public void onAdLoaded(@NonNull TradecoreAd ad) {
             // Ad loaded
             Log.d("ExampleActivity", "Ad loaded for zone " + ad.getZoneId() + " with targeting: " + ad.getTargeting());
-            if (tradecoreInstreamAdUnit != null) {
-                tradecoreInstreamAdUnit.show();
+            if (instreamVideo != null) {
+                instreamVideo.show();
             }
         }
 
@@ -253,7 +253,7 @@ When you leave the screen or you no longer need the ad unit you should call `des
 ```kotlin
     override fun onDestroy() {
         super.onDestroy()
-        tradecoreInstreamAdUnit?.destroy()
+        instreamVideo?.destroy()
     }
 ```
 
@@ -263,13 +263,13 @@ When you leave the screen or you no longer need the ad unit you should call `des
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        tradecoreInstreamAdUnit.destroy();
+        instreamVideo.destroy();
     }
 ```
 
-## TradecoreInstreamAdUnit configuration
+## TradecoreInstreamVideo configuration
 
-Please refer to the table below for a detailed overview of the `TradecoreInstreamAdUnit` properties and methods
+Please refer to the table below for a detailed overview of the `TradecoreInstreamVideo` properties and methods
 available for configuration in rendering mode. You can use this method to change the ad video player state.
 
 | Property/Methods | Description                     |

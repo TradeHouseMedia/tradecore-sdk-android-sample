@@ -10,7 +10,7 @@ import android.widget.VideoView
 import com.tradehousemedia.tradecore.core.TradecoreAd
 import com.tradehousemedia.tradecore.core.TradecoreError
 import com.tradehousemedia.tradecore.core.listeners.TradecoreInstreamAdListener
-import com.tradehousemedia.tradecore.ima.TradecoreInstreamAdUnit
+import com.tradehousemedia.tradecore.ima.TradecoreInstreamVideo
 import com.tradehousemedia.tradecore.kotlin.R
 import com.tradehousemedia.tradecore.kotlin.utils.BaseExampleActivity
 
@@ -20,7 +20,7 @@ class TradecoreInstreamMedia3Activity : BaseExampleActivity() {
 
     private lateinit var videoPlayer: VideoView
     private lateinit var mediaController: MediaController
-    private var tradecoreInstreamAdUnit: TradecoreInstreamAdUnit? = null
+    private var instreamVideo: TradecoreInstreamVideo? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,17 +39,17 @@ class TradecoreInstreamMedia3Activity : BaseExampleActivity() {
     private fun loadAd(playButton: View) {
         val container = findViewById<ViewGroup>(R.id.videoPlayerContainer)
 
-        tradecoreInstreamAdUnit = TradecoreInstreamAdUnit("tradecore-zone-3027", this)
-        tradecoreInstreamAdUnit?.setVideoPlayer(videoPlayer, container)
-        tradecoreInstreamAdUnit?.setAdListener(createAdListener())
-        tradecoreInstreamAdUnit?.loadAd()
+        instreamVideo = TradecoreInstreamVideo("tradecore-zone-3027", this)
+        instreamVideo?.setVideoPlayer(videoPlayer, container)
+        instreamVideo?.setAdListener(createAdListener())
+        instreamVideo?.loadAd()
 
         playButton.visibility = View.GONE
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        tradecoreInstreamAdUnit?.destroy()
+        instreamVideo?.destroy()
     }
 
     private fun createAdListener(): TradecoreInstreamAdListener {
@@ -57,7 +57,7 @@ class TradecoreInstreamMedia3Activity : BaseExampleActivity() {
             override fun onAdLoaded(ad: TradecoreAd) {
                 // Ad loaded
                 Log.d("ExampleActivity", "Ad loaded for zone " + ad.zoneId + " with targeting: " + ad.targeting)
-                tradecoreInstreamAdUnit?.show()
+                instreamVideo?.show()
             }
 
             override fun onAdFailed(error: TradecoreError) {
