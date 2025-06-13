@@ -4,7 +4,7 @@ The current repository serves as a guide for mobile publishers who integrate the
 
 The repository structure:
 
-- `/apps` folder contains Kotlin and Java projects of the applications that demonstrate different scenarios of integrating the Tradecore SDK. 
+- `/demo-apps` folder contains Kotlin and Java projects of the applications that demonstrate different scenarios of integrating the Tradecore SDK. 
 - `/docs` folder contains the public documentation for Tradecore SDK. All code snippets in the docs are taken from the demo applications so you can easily switch from theory to practice.
 
 ## SDK Overview
