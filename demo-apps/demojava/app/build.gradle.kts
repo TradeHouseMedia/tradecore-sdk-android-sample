@@ -35,7 +35,7 @@ android {
 //noinspection UseTomlInstead
 dependencies {
     // Tradecore
-    val tradecoreVersion = "1.3.9"
+    val tradecoreVersion = "1.3.10"
     implementation("com.tradehousemedia:tradecore-core:$tradecoreVersion")
     implementation("com.tradehousemedia:tradecore-google-ad-manager:$tradecoreVersion")
     implementation("com.tradehousemedia:tradecore-prebid:$tradecoreVersion")

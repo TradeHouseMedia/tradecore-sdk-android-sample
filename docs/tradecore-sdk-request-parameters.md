@@ -30,6 +30,7 @@ Zone parameters are settings unique to each placement or zone, enabling tailored
 adView.setZoneParameters(
     listOf(
         TradecoreGamZoneParameters(
+            adUnitId = "/testapp/adunitid",
             customTargeting = listOf(
                 TradecoreGamZoneParameters.CustomTargeting.of("key_1", "value_1"),
                 TradecoreGamZoneParameters.CustomTargeting.of("key_2", listOf("array_1", "array_2")),
@@ -51,11 +52,12 @@ adView.setZoneParameters(
 The `TradecoreGamZoneParameters` class should be used to configure Google Ad Manager (GAM) settings at the zone
 level.
 
-| Property              | Description                                                                                                            |
-|-----------------------|------------------------------------------------------------------------------------------------------------------------|
-| `customTargeting`     | Key-value pairs used for custom targeting in ad requests.                                                              |
-| `categoryExclusions`  | Array of categories to exclude from ad results.                                                                        |
+| Property              | Description                                                                                                             |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------------|
+| `adUnitId`            | Custom GAM ad unit id for this ad view.                                                                                 |
+| `customTargeting`     | Key-value pairs used for custom targeting in ad requests.                                                               |
+| `categoryExclusions`  | Array of categories to exclude from ad results.                                                                         |
 | `keywords`            | Array of keywords describing current user activity (e.g., "Sports Scores" or "Football"). Set to nil to clear keywords. |
-| `contentUrl`          | URL of a webpage matching the app’s primary content, used for targeting and brand safety purposes.                     |
-| `publisherProvidedId` | User ID provided by the publisher for targeting purposes.                                                              |
-| `adMobExtras`         | Additional ad network parameters sent to Google networks for AdMob adapter.                                            |
+| `contentUrl`          | URL of a webpage matching the app’s primary content, used for targeting and brand safety purposes.                      |
+| `publisherProvidedId` | User ID provided by the publisher for targeting purposes.                                                               |
+| `adMobExtras`         | Additional ad network parameters sent to Google networks for AdMob adapter.                                             |

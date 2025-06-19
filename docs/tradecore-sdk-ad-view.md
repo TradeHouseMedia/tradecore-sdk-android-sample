@@ -11,13 +11,13 @@ private var adView: TradecoreAdView? = null
 private fun loadAd() {
     // 1. Create TradecoreAdView
     val adView = TradecoreAdView(this).apply { adView = this }
-    
+
     // 2. Set the zone id
     adView.zoneId = ZONE_ID
-    
+
     // 3. Load the ad
     adView.loadAd()
-    
+
     // 4. Add the ad view to the screen
     adContainer.addView(adView)
 }
@@ -47,25 +47,26 @@ private void loadAd() {
 
 ## Destroy method
 
-When you leave the screen or you no longer need the ad view you should call `destroy()` method. It disables the auto refresh and clears all resources. 
+When you leave the screen or you no longer need the ad view you should call `destroy()` method. It disables the auto
+refresh and clears all resources.
 
 **Kotlin:**
 
 ```kotlin
-    override fun onDestroy() {
-        super.onDestroy()
-        adView?.destroy()
-    }
+override fun onDestroy() {
+    super.onDestroy()
+    adView?.destroy()
+}
 ```
 
 **Java:**
 
 ```java
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        adView.destroy();
-    }
+@Override
+protected void onDestroy() {
+    super.onDestroy();
+    adView.destroy();
+}
 ```
 
 ## Ad events
@@ -76,7 +77,7 @@ lifecycle events.
 **Kotlin:**
 
 ```kotlin
-    adView.setAdListener(
+adView.setAdListener(
     object : TradecoreAdViewListener {
         override fun onAdLoaded(ad: TradecoreAd) {
             // Ad is loaded
@@ -111,7 +112,7 @@ lifecycle events.
 ```java
 adView.setAdListener(new TradecoreAdViewListener() {
     @Override
-    public void onAdLoaded(@NotNull TradecoreAd tradecoreAd){
+    public void onAdLoaded (@NotNull TradecoreAd tradecoreAd){
         // Ad is loaded
     }
 
@@ -150,8 +151,19 @@ information about the ad metadata structure and its fields in the [Ad Metadata](
 
 Refer to the table below for a breakdown of the `TradecoreAdView` properties you can use for configuration.
 
-| Property            | Description                                                                                                                                                                        |
-|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `requestParameters` | Instance property to send first-party data for every Tradecore zone. See [Request Parameters](./tradecore-sdk-request-parameters.md#zone-parameters) section for more information. |
-| `adSizes`           | Represents the sizes applied to this zone. Get-only property.                                                                                                |
-    
+| Property         | Description                                                                                                                                                                        |
+|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `zoneParameters` | Instance property to send first-party data for every Tradecore zone. See [Request Parameters](./tradecore-sdk-request-parameters.md#zone-parameters) section for more information. |
+| `adSizes`        | Represents the sizes applied to this zone. Get-only property.                                                                                                                      |
+
+Also, you can set the custom GAM ad unit id using zone parameters.
+
+```kotlin
+adView.setZoneParameters(
+    listOf(
+        TradecoreGamZoneParameters(
+            adUnitId = "/testapp/adunitid"
+        )
+    )
+)
+```
