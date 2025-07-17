@@ -81,6 +81,10 @@ adView.setAdListener(
     object : TradecoreAdViewListener {
         override fun onAdLoaded(ad: TradecoreAd) {
             // Ad is loaded
+            
+            // Change the layout according to TradecoreAdView size.
+	        val adSize = ad.adSize
+   		    Log.d("TAG, "Tradecore Ad View on load with size: ${ad.adSize?.width}x${ad.adSize?.height}")
         }
 
         override fun onAdFailed(tradecoreError: TradecoreError) {
@@ -154,7 +158,6 @@ Refer to the table below for a breakdown of the `TradecoreAdView` properties you
 | Property         | Description                                                                                                                                                                        |
 |------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `zoneParameters` | Instance property to send first-party data for every Tradecore zone. See [Request Parameters](./tradecore-sdk-request-parameters.md#zone-parameters) section for more information. |
-| `adSizes`        | Represents the sizes applied to this zone. Get-only property.                                                                                                                      |
 
 Also, you can set the custom GAM ad unit id using zone parameters.
 

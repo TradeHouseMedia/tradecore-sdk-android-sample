@@ -46,6 +46,8 @@ class TradecoreAdView320x50Activity : BaseExampleActivity() {
         return object : TradecoreAdViewListener {
             override fun onAdLoaded(ad: TradecoreAd) {
                 // Ad is loaded
+                Log.d(TAG, "Ad view width: ${ad.adSize?.width}, height: ${ad.adSize?.height}")
+                Log.d(TAG, "Banner view width: ${adView?.width}, height: ${adView?.height}")
             }
 
             override fun onAdFailed(tradecoreError: TradecoreError) {

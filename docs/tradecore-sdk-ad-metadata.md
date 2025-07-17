@@ -17,3 +17,4 @@ The table below provides an overview of the available properties in `TradecoreAd
 | `zoneId`       | ID used to obtain configuration from the global stack.                                                            |
 | `responseInfo` | Google Mobile Ads specific information about the ad. Should be cast to `com.google.android.gms.ads.ResponseInfo`. |
 | `targeting`    | Google Mobile Ads targeting information that should be applied to the GAM's `cust_params` query parameter.        |
+| `adSize` | Represents the size of the winning ad. Get-only property.|
