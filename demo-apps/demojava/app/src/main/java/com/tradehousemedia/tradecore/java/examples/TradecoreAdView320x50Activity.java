@@ -48,6 +48,14 @@ public class TradecoreAdView320x50Activity extends BaseExampleActivity {
             @Override
             public void onAdLoaded(@NotNull TradecoreAd tradecoreAd) {
                 // Ad is loaded
+
+                Log.d(TAG, String.format("Ad view width: %d, height: %d",
+                        tradecoreAd.getAdSize().getWidth(),
+                        tradecoreAd.getAdSize().getHeight()));
+
+                Log.d(TAG, String.format("Banner view width: %d, height: %d",
+                        adView.getWidth(),
+                        adView.getHeight()));
             }
 
             @Override
