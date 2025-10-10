@@ -17,7 +17,7 @@ dependencyResolutionManagement {
 2. Add the main core dependency.
 
 ```groovy
-def tradecoreVersion = "1.3.8"
+def tradecoreVersion = "1.3.15"
 implementation("com.tradehousemedia:tradecore-core:$tradecoreVersion")
 ```
 
@@ -68,7 +68,16 @@ class TheApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        TradecoreSDK.initialize(STACK_ID, this)
+        TradecoreSDK.initialize(STACK_ID, this, object : TradecoreInitializationListener {
+            override fun onSdkInit() {
+                Log.d(TAG, "SDK Initialized")
+            }
+
+            override fun onSdkFailedToInit(error: TradecoreError) {
+                Log.d(TAG, "SDK failed to init")
+            }
+
+        })
     }
 
 }
@@ -82,7 +91,17 @@ public class TheApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        TradecoreSDK.initialize(STACK_ID, this);
+        TradecoreSDK.initialize(STACK_ID, this, new TradecoreInitializationListener() {
+            @Override
+            public void onSdkInit() {
+                Log.d(TAG, "SDK Initialized");
+            }
+
+            @Override
+            public void onSdkFailedToInit(@NotNull TradecoreError error) {
+                Log.d(TAG, "SDK failed to init: " + error.getMessage());
+            }
+        });
     }
 
 }
