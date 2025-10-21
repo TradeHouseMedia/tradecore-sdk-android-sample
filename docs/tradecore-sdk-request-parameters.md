@@ -24,6 +24,42 @@ TradecoreSDK.requestParameters = listOf(
 )
 ```
 
+### PrebidMobile
+
+The `TradecorePrebidStackParameters` class is designed to manage PrebidMobile configuration for the entire stack. Below is overview of its properties:
+
+| Property               | Description                                                    |
+|------------------------|----------------------------------------------------------------|
+| `appConfig`            | Arbitrary ORTB app configuration represented as a JSON string. |
+
+Example of usage:
+
+```kotlin
+// Create instance of parameters
+val prebidParameters = TradecorePrebidStackParameters(
+    appConfig = """
+        {
+          "name": "API app name",
+          "keywords": "keyword-a,keyword-b,keyword-c",
+          "publisher": {
+            "cat": [
+              "IAB10-1",
+              "IAB10-2"
+            ]
+          },
+          "cat": [
+            "IAB3-1",
+            "IAB3-2"
+          ],
+          "new_field": "test"
+        }
+    """.trimIndent()
+)
+
+// Set global request parameters
+TradecoreSDK.requestParameters = listOf(prebidParameters)
+```
+
 ## Zone Parameters
 
 Zone parameters are settings unique to each placement or zone, enabling tailored configurations for each ad request.
