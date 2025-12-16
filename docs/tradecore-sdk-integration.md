@@ -17,7 +17,7 @@ dependencyResolutionManagement {
 2. Add the main core dependency.
 
 ```groovy
-def tradecoreVersion = "1.3.15"
+def tradecoreVersion = "1.3.18"
 implementation("com.tradehousemedia:tradecore-core:$tradecoreVersion")
 ```
 
