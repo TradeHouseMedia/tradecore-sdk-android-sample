@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -27,15 +29,18 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_11)
     }
 }
 
 //noinspection UseTomlInstead
 dependencies {
     // Tradecore
-    val tradecoreVersion = "1.3.15"
+    val tradecoreVersion = "1.3.20"
     implementation("com.tradehousemedia:tradecore-core:$tradecoreVersion")
     implementation("com.tradehousemedia:tradecore-google-ad-manager:$tradecoreVersion")
     implementation("com.tradehousemedia:tradecore-prebid:$tradecoreVersion")
